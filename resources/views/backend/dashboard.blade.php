@@ -108,10 +108,27 @@
             </tr>
           </tfoot>
           <tbody>
+            <tr>
+
+              {{-- <td>{{var_dump($posts->id)}}</td> --}}
+            </tr>
               @foreach($posts as $post)
               <tr>
+
+
+
+                
                 <td>{{$post->id}}</td>
-                <td>{{$post->category->title}}</td>
+                <td>
+                  @foreach($categories as $category)
+                    @if($category->id == $post->cat_id)
+                      {{$category->title}}
+                    @endif
+
+                  @endforeach
+                
+                
+                </td>
                 <td>{{$post->title}}</td>
                 <td><img src="{{ asset('imgs/thumb').'/'.$post->thumb }}" width="100" /></td>
                 <td><img src="{{ asset('imgs/full').'/'.$post->full_img }}" width="100" /></td>

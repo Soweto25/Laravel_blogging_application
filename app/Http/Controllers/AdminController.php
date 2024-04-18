@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 use App\Models\Admin;
 use App\Models\Post;
 
+use App\Models\Category;
+use App\Models\Comment;
+use App\Models\User;
+
 
 class AdminController extends Controller
 {
@@ -60,8 +64,10 @@ class AdminController extends Controller
     // Dashboard
     function dashboard()
     {
+        // $posts = Post::with('category')->orderBy('id', 'desc')->get();
         $posts=Post::orderBy('id','desc')->get();
-    	return view('backend.dashboard',['posts'=>$posts]);
+        $categories = category::all();
+    	return view('backend.dashboard',['posts'=>$posts, 'categories'=>$categories]);
     }
 
     // Show all users

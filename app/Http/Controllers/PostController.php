@@ -20,7 +20,8 @@ class PostController extends Controller
      public function index()
      {
         $data=Post::all();
-        return view('backend.post.index',['data'=>$data,
+        $categories=category::all();
+        return view('backend.post.index',['data'=>$data, 'categories'=>$categories
      ]);
      }
 

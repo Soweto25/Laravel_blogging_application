@@ -45,11 +45,15 @@
               <tr>
                 <td>{{$post->id}}</td>
                 <td>
-                  @if($post->category)           
-                    {{$post->category->title}}
-                  @else
-                    No Category
-                  @endif
+                  
+                  
+                  @foreach($categories as $category)
+                    @if($category->id == $post->cat_id)
+                      {{$category->title}}
+                    @endif
+
+                  @endforeach
+                
                 
                 </td>
                 <td>{{$post->title}}</td>

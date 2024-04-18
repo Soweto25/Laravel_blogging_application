@@ -31,9 +31,20 @@
 					</div>
 				</div>
 				@endauth
+
+
+
+
+
 				<!-- Fetch Comments -->
 				<div class="card my-4">
-					<h5 class="card-header">Comments <span class="badge badge-dark">{{count($detail->comments)}}</span></h5>
+					<h5 class="card-header">Comments 
+						@if($detail->comments)
+							<span class="badge badge-dark">{{ count($detail->comments) }}</span>
+						@else
+							<span class="badge badge-dark">0</span>
+						@endif
+					</h5>
 					<div class="card-body">
 						@if($detail->comments)
 							@foreach($detail->comments as $comment)

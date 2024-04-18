@@ -27,8 +27,12 @@ class HomeController extends Controller
     function detail(Request $request,$slug,$postId){
         // Update post count
         Post::find($postId)->increment('views');
-    	$detail=Post::find($postId);
-    	return view('detail',['detail'=>$detail]);
+        $recent_posts = Post::orderBy('created_at', 'desc')->take(5)->get();
+        $popular_posts = Post::orderBy('views', 'asc')->take(5)->get();
+
+
+    	$detail=Post::with('category')->find($postId);
+    	return view('detail',['detail'=>$detail, 'recent_posts' => $recent_posts, 'popular_posts'=>$popular_posts]);
     }
 
     // All Categories
