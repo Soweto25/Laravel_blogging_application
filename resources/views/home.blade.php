@@ -1,6 +1,18 @@
 @extends('frontlayout')
 @section('title','Home Page')
 @section('content')
+
+<style>
+					
+	nav.flex.items-center.justify-between span.relative.z-0.inline-flex{
+		display: none;
+	}
+
+	nav.flex.items-center.justify-between p.text-sm.text-gray-700.leading-5{
+		margin:9px;
+	}
+</style>
+
 		<div class="row">
 			<div class="col-md-8">
 				<div class="row mb-5"> 
@@ -21,6 +33,7 @@
 				</div>
 				<!-- Pagination -->
 				{{$posts->links()}}
+
 			</div>
 			<!-- Right SIdebar -->
 			<div class="col-md-4">
@@ -59,4 +72,9 @@
 				</div>
 			</div>
 		</div>
+
+<link href="{{asset('backend')}}/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+<script src="{{asset('backend')}}/vendor/datatables/jquery.dataTables.js"></script>
+<script src="{{asset('backend')}}/vendor/datatables/dataTables.bootstrap4.js"></script>
+<script src="{{asset('backend')}}/js/demo/datatables-demo.js"></script>
 @endsection('content')

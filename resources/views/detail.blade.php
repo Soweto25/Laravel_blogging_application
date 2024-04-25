@@ -9,7 +9,7 @@
 				<div class="card">
 					<h5 class="card-header">
 						{{$detail->title}}
-						<span class="float-right">Total Views={{$detail->views}}</span>
+						<span class="float-right">Total Views <span class="badge barge-dark card text-white bg-dark" style="">{{$detail->views}}</span></span>
 					</h5>
 					<img src="{{asset('imgs/full/'.$detail->full_img)}}" class="card-img-top" alt="{{$detail->title}}">
 					<div class="card-body">
@@ -38,22 +38,47 @@
 
 				<!-- Fetch Comments -->
 				<div class="card my-4">
-					<h5 class="card-header">Comments 
-						@if($detail->comments)
-							<span class="badge badge-dark">{{ count($detail->comments) }}</span>
+					<h5 class="card-header">Comments
+{{-- 						
+						@if($comments)
+							<h1>
+								{{count($comments)}}
+							</h1>
+						@endif --}}
+
+						@if($comments)
+							<span class="badge badge-dark">{{ count($comments) }}</span>
 						@else
 							<span class="badge badge-dark">0</span>
 						@endif
 					</h5>
+
+
+					
 					<div class="card-body">
-						@if($detail->comments)
-							@foreach($detail->comments as $comment)
+						@if($comments)
+							@foreach($comments as $comment)
 								<blockquote class="blockquote">
-								  <p class="mb-0">{{$comment->comment}}</p>
+									@if($comment->user_id == $detail->id)
+										<p class="mb-0">{{$comment->comment}}</p>
+
+										@foreach($users as $user)
+											@if($user->id == $comment->user_id)
+												<p class="mb-0" style="font-size: 14px; font-weight: bold;">{{$user->email}}</p>
+											@endif
+											{{-- $ --}}
+
+											{{-- {{$user->email}} --}}
+										@endforeach
+										
+
+
+									@endif
+								  
 								  @if($comment->user_id==0)
 								  <footer class="blockquote-footer">Admin</footer>
 								  @else
-								  <footer class="blockquote-footer">{{$comment->user->name}}</footer>
+								  {{-- <footer class="blockquote-footer">{{$comment->user->name}}</footer> --}}
 								  @endif
 								</blockquote>
 								<hr/>
@@ -84,7 +109,9 @@
 					<div class="list-group list-group-flush">
 						@if($recent_posts)
 							@foreach($recent_posts as $post)
-								<a href="#" class="list-group-item">{{$post->title}}</a>
+								<a href="../detail/{{$post->title}}/{{$post->id}}" class="list-group-item">{{$post->title}}</a>
+
+								<h1>{{dd(dirname(3))}}</h1>
 							@endforeach
 						@endif
 					</div>
