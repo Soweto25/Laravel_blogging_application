@@ -41,7 +41,7 @@
 				<div class="card mb-4">
 					<h5 class="card-header">Search</h5>
 					<div class="card-body">
-						<form action="{{url('/')}}">
+						<form action="{{url('/')}}" method="GET">
 							<div class="input-group">
 							  <input type="text" name="q" class="form-control" />
 							  <div class="input-group-append">
